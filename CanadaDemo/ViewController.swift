@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, DataModelProtocol,UICollectionViewDelegate,UICollectionViewDataSource{
 
+
+    
     @IBOutlet weak var collectionView: UICollectionView!
 
     
@@ -17,6 +19,18 @@ class ViewController: UIViewController, DataModelProtocol,UICollectionViewDelega
     var model = DataModel()
     var data = CanadaData()
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //Flow layout
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.estimatedItemSize = CGSize(width: 300, height: 200)
+
+
+        
+       collectionView.setCollectionViewLayout(flowLayout, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,7 +46,9 @@ class ViewController: UIViewController, DataModelProtocol,UICollectionViewDelega
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,12 +77,44 @@ class ViewController: UIViewController, DataModelProtocol,UICollectionViewDelega
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionViewCell
         
+        cell.backgroundColor = UIColor.cyan
+        
+        cell.imageView.image = nil
+        
+        var url = URL(string: "")
+        if (data.rows?[indexPath.row].imageHref)! != "" {
+            url = URL(string: (data.rows?[indexPath.row].imageHref)!)!
+            DispatchQueue.main.async {
+                cell.imageView.load(url: url!)
+            }
+//            if let cellSize = cell.imageView.image?.size{
+//                cell.frame.size = cellSize
+//            }
+            
+            
+        }
+        
+        
+//        cell.translatesAutoresizingMaskIntoConstraints = false
+//        cell.stackView.translatesAutoresizingMaskIntoConstraints = false
+//        cell.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        cell.imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+
+        //cell.imageView.image = imageView.image
         // Set the properties of cell to display the data from the feed
         // TODO: - Download image from url
         cell.titleLabel.text = data.rows?[indexPath.row].title
         
+       // print(cell.frame.width)
+       // print(cell.titleLabel.frame.width)
         
         return cell
     }
+    
+
+
 }
+
 
