@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, DataModelProtocol{
+class ViewController: UIViewController, DataModelProtocol,UICollectionViewDelegate,UICollectionViewDataSource{
 
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    
+    // Create Model and data object to store data retieved
     var model = DataModel()
     var data = CanadaData()
     
@@ -18,8 +22,16 @@ class ViewController: UIViewController, DataModelProtocol{
         // Do any additional setup after loading the view, typically from a nib.
         // Assign viewcontroller as delegate and request json data
         model.delegate = self
+        
+        //Retrieve json feed data from the model
+        
         //model.getRemoteJsonData()
         model.getLocalJsonFile()
+        
+        // Set delegate properties
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +43,30 @@ class ViewController: UIViewController, DataModelProtocol{
     
     func dataRetrieved(data: CanadaData) {
         self.data = data
-        print(self.data.title!)
+        
+        print("Number of rows in file \(self.data.rows!.count)")
+        
+        
+        
+    }
+    
+    // MARK: - CollectionViewProtocol methods
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return data.rows!.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionViewCell
+        
+        // Set the properties of cell to display the data from the feed
+        // TODO: - Download image from url
+        cell.titleLabel.text = data.rows?[indexPath.row].title
+        
+        
+        return cell
     }
 }
 

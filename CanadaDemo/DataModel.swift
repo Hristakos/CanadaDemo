@@ -39,8 +39,11 @@ class DataModel {
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(CanadaData.self, from: data)
             
+            // Handle cases of null values from JSON file
+            var cleanData = CanadaData()
+            cleanData = cleanJsonData(rawData: decodedData)
             //Return the question struts to the view controller
-            delegate?.dataRetrieved(data: decodedData)
+            delegate?.dataRetrieved(data: cleanData)
         }
         catch{
             
@@ -74,18 +77,59 @@ class DataModel {
                 //TODO:- Not able to decode data from network maybe security settings
                 do {
                     let decodedData = try decoder.decode(CanadaData.self, from: data!)
-                    print(decodedData.title!)
-                    // Notify the view controller with the results by passing the data to main thread
+                    //print(decodedData.title!)
+                    
+                    // Handle cases of null values from JSON file
+                    var cleanData = CanadaData()
+                    cleanData = self.cleanJsonData(rawData: decodedData)
+                    
+                    // Notify the view controller with the results by passing the data to on main thread
                     DispatchQueue.main.async {
                         
-                        self.delegate?.dataRetrieved(data: decodedData)
+                        self.delegate?.dataRetrieved(data: cleanData)
                     }
                 }catch{
-                     print("couldn't parse json")
+                    print("couldn't parse json")
                 }
                 
             }
         }
         dataTask.resume()
     }
+    
+    func cleanJsonData(rawData:CanadaData) -> CanadaData {
+        
+        var cleanData = CanadaData(title: "", rows: [Row]())
+        
+        //Loop though each element of the data and replace any Null values check if entire element has null values remove from data
+        for i in 0...(rawData.rows?.count)! - 1{
+           
+            
+            var title = rawData.rows![i].title
+            var description = rawData.rows![i].description
+            var imageHref = rawData.rows![i].imageHref
+
+
+            // Check at least 1 element has a value, if so check each value and replace invalid vaues to avoid a crash
+
+            if title != nil || description != nil || imageHref != nil {
+                if title == nil {
+                    title = ""
+                }
+                if description == nil {
+                    description = ""
+                }
+                if imageHref == nil {
+                    imageHref = ""
+                }
+                
+                // Add element
+                cleanData.rows?.append(Row(title: title, description: description, imageHref: imageHref))
+                
+            }
+        
+        }
+        return cleanData
+    }
+    
 }

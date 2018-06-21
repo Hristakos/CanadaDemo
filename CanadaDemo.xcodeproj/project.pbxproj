@@ -16,6 +16,7 @@
 		6B5BE58A20DA766C00E91C11 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58920DA766C00E91C11 /* DataModel.swift */; };
 		6B5BE58E20DA7B1900E91C11 /* CanadaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */; };
 		6B5BE59020DA81B400E91C11 /* canada.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE58F20DA81B300E91C11 /* canada.json */; };
+		6B5BE59220DB32BA00E91C11 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6B5BE58920DA766C00E91C11 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanadaData.swift; sourceTree = "<group>"; };
 		6B5BE58F20DA81B300E91C11 /* canada.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = canada.json; sourceTree = "<group>"; };
+		6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				6B5BE58520DA73B600E91C11 /* Row.swift */,
 				6B5BE58920DA766C00E91C11 /* DataModel.swift */,
 				6B5BE57720DA731300E91C11 /* Main.storyboard */,
+				6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */,
 				6B5BE57A20DA731C00E91C11 /* Assets.xcassets */,
 				6B5BE57C20DA731C00E91C11 /* LaunchScreen.storyboard */,
 				6B5BE58F20DA81B300E91C11 /* canada.json */,
@@ -153,6 +156,7 @@
 				6B5BE57620DA731300E91C11 /* ViewController.swift in Sources */,
 				6B5BE58620DA73B600E91C11 /* Row.swift in Sources */,
 				6B5BE57420DA731300E91C11 /* AppDelegate.swift in Sources */,
+				6B5BE59220DB32BA00E91C11 /* PhotoCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
