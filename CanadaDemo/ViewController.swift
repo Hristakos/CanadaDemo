@@ -13,7 +13,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     // UICollectionViewFlowLayout instance for collection view to dynamically resize cells
     var flowLayout = UICollectionViewFlowLayout()
-
+    // To store image to pass to detailView
+    var selectedItemImage = UIImage()
+    var selectedItemDescripton : String?
     //UICollectionViewDelegateFlowLayout
     
     // collection View outlet property to moodify collection porperties
@@ -28,9 +30,14 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     override func viewDidAppear(_ animated: Bool) {
         
         setFlowLayoutForColletionView()
+        
     }
     
 
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        setFlowLayoutForColletionView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +51,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         // Set delegate properties
         collectionView.delegate = self
         collectionView.dataSource = self
+        
 
     }
 
@@ -65,7 +73,10 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         let detailVC = segue.destination as! DetailViewController
         
         // set the articeUrl property of DetailViewController
-        detailVC.navigationItem.title = item.title!
+        
+        detailVC.screenTitle = item.title!
+        detailVC.image = selectedItemImage
+        detailVC.descriptionLabelText = selectedItemDescripton!
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,6 +116,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                 collectionView.setCollectionViewLayout(flowLayout, animated: true)
             }
         }
+        
+        
     }
 }
 
@@ -151,7 +164,23 @@ extension ViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //set selected image to pass to detailVC
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! PhotoCollectionViewCell
         
+        if selectedCell.imageView.image != nil{
+            selectedItemImage = selectedCell.imageView.image!
+        }
+        else{
+            // Show a default image indicting no image available
+            selectedItemImage = UIImage(named: "error-1.jpg")!
+        }
+        // set selected description to pass
+        
+        if data.rows![indexPath.row].description != nil{
+            selectedItemDescripton = data.rows![indexPath.row].description!
+        }else{
+            selectedItemDescripton = "No description available"
+        }
         // Transition to Detail View Controller
         performSegue(withIdentifier: "segueToDetail", sender: self)
         

@@ -51,8 +51,8 @@ func displayRow(_ row:Row){
     
     // Check that it isn't nil
     guard url != nil else{
-        print("Coiuldn't create url obect")
-        imageView.image = UIImage(named: "error.png")
+        print("Coiuldn't create url object")
+        imageView.image = UIImage(named: "error-1.jpg")
         return
     }
     
