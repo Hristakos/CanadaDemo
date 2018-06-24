@@ -7,14 +7,24 @@
 //
 
 import Foundation
+/* 
+ 
+ */
 
+// Protocol used to communicate between model and view when retrieving JSON data from feed and returning back in CanaData structure
 protocol DataModelProtocol{
     func dataRetrieved(data:CanadaData)
 }
 
 class DataModel {
     
+    // delegate property for view to assign itself to
     var delegate:DataModelProtocol?
+    
+    /*  NOTES: Using this method at the momment having problems decode data from server. Data is download unable to parse JSON using same line of code that works from local file in project need to investigate further have created jsondata.swift to compare data but need to understand further. Might try and parse data retrieved pre swift 4 if it makes a difference ?????
+     */
+    
+    // retrieved JSON data from local file (stored in project) and parse data using JSONDecoder and CanaData Struct returns data via protocol to the delegate via dataRetrieved(data:CanadaData)
     
     func getLocalJsonFile(){
         
@@ -35,6 +45,8 @@ class DataModel {
             // get the data from that URL
             let data = try Data(contentsOf: url)
             
+            // data is 3108 bytes
+            print(data.debugDescription)
             //Decode the JSON data
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(CanadaData.self, from: data)
@@ -66,52 +78,59 @@ class DataModel {
             //TODO: show alert msg
             return
         }
+        
         // Create session object
         let session = URLSession.shared
         
+        // Create a DataTask Object
+
         let dataTask = session.dataTask(with: url!) { (data, response, error) in
-            
+            print(response!.description)
             if error == nil && data != nil{
+                
                 // Create decoder object
                 let decoder = JSONDecoder()
+                
                 //TODO:- Not able to decode data from network maybe security settings
+                // When download file data is 3107 bytes from local its 3108 ???
                 do {
-                    let decodedData = try decoder.decode(CanadaData.self, from: data!)
-                    //print(decodedData.title!)
                     
+                    let decodedData = try decoder.decode(CanadaData.self, from: data!)
+
                     // Handle cases of null values from JSON file
                     var cleanData = CanadaData()
                     cleanData = self.cleanJsonData(rawData: decodedData)
-                    
+
                     // Notify the view controller with the results by passing the data to on main thread
                     DispatchQueue.main.async {
-                        
                         self.delegate?.dataRetrieved(data: cleanData)
                     }
-                }catch{
-                    print("couldn't parse json")
                 }
-                
+                catch{
+                    print("couldn't parse json error = \(error.localizedDescription)")
+                    print(data!.base64EncodedString())
+                }
             }
         }
+        
+        // Fire off the task
         dataTask.resume()
     }
     
+    // This function look at the data retrieved from jason decoder and check for invalid entries like null and removed any invalid entries
     func cleanJsonData(rawData:CanadaData) -> CanadaData {
         
         var cleanData = CanadaData(title: "", rows: [Row]())
         
         //Loop though each element of the data and replace any Null values check if entire element has null values remove from data
         for i in 0...(rawData.rows?.count)! - 1{
-           
-            
+  
             var title = rawData.rows![i].title
             var description = rawData.rows![i].description
             var imageHref = rawData.rows![i].imageHref
-
-
+            
             // Check at least 1 element has a value, if so check each value and replace invalid vaues to avoid a crash
-
+            
             if title != nil || description != nil || imageHref != nil {
                 if title == nil {
                     title = ""
@@ -122,8 +141,8 @@ class DataModel {
                 if imageHref == nil {
                     imageHref = ""
                 }
-                
-                // Add element
+
+                // Add element to clean data for return
                 cleanData.rows?.append(Row(title: title, description: description, imageHref: imageHref))
                 
             }
@@ -131,5 +150,4 @@ class DataModel {
         }
         return cleanData
     }
-    
 }

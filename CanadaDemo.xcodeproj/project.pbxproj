@@ -17,6 +17,7 @@
 		6B5BE58E20DA7B1900E91C11 /* CanadaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */; };
 		6B5BE59020DA81B400E91C11 /* canada.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE58F20DA81B300E91C11 /* canada.json */; };
 		6B5BE59220DB32BA00E91C11 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */; };
+		6BF3598320DE7CC5007DC57C /* jsondata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF3598220DE7CC5007DC57C /* jsondata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanadaData.swift; sourceTree = "<group>"; };
 		6B5BE58F20DA81B300E91C11 /* canada.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = canada.json; sourceTree = "<group>"; };
 		6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		6BF3598220DE7CC5007DC57C /* jsondata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsondata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 		6B5BE56720DA731200E91C11 = {
 			isa = PBXGroup;
 			children = (
+				6BF3598220DE7CC5007DC57C /* jsondata.swift */,
 				6B5BE57220DA731200E91C11 /* CanadaDemo */,
 				6B5BE57120DA731200E91C11 /* Products */,
 			);
@@ -155,6 +158,7 @@
 				6B5BE58E20DA7B1900E91C11 /* CanadaData.swift in Sources */,
 				6B5BE57620DA731300E91C11 /* ViewController.swift in Sources */,
 				6B5BE58620DA73B600E91C11 /* Row.swift in Sources */,
+				6BF3598320DE7CC5007DC57C /* jsondata.swift in Sources */,
 				6B5BE57420DA731300E91C11 /* AppDelegate.swift in Sources */,
 				6B5BE59220DB32BA00E91C11 /* PhotoCollectionViewCell.swift in Sources */,
 			);
@@ -303,6 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XG9U4PXKB;
 				INFOPLIST_FILE = CanadaDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -321,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XG9U4PXKB;
 				INFOPLIST_FILE = CanadaDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
