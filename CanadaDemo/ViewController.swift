@@ -48,6 +48,26 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the item to display which the user tapped on
+        let indexPath = collectionView.indexPathsForSelectedItems
+        
+        guard indexPath != nil else {
+            
+            print("user didn't select item")
+            return
+        }
+        
+        let item = data.rows![(indexPath?.first?.row)!]
+        
+        // Get reference to the DetailViewController
+        let detailVC = segue.destination as! DetailViewController
+        
+        // set the articeUrl property of DetailViewController
+        detailVC.navigationItem.title = item.title!
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,6 +121,8 @@ extension ViewController : DataModelProtocol{
         print("Number of rows in file \(self.data.rows!.count)")
   
     }
+    
+    
 }
     
     // MARK: - CollectionViewProtocol methods
@@ -126,5 +148,12 @@ extension ViewController : UICollectionViewDataSource {
         cell.displayRow(data.rows![indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Transition to Detail View Controller
+        performSegue(withIdentifier: "segueToDetail", sender: self)
+        
     }
 }
