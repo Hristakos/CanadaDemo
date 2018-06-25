@@ -7,8 +7,71 @@
 //
 
 import Foundation
-
-
+/*
+func loadPortraitScreen(){
+    
+    
+    let bannerWidth = view.frame.width
+    let bannerHeight = view.frame.height
+    
+    let bannerX = bannerWidth / 2 - image!.size.width / 2
+    let bannerY = bannerHeight / 2 - image!.size.height / 2
+    
+    portraitImageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+    portraitImageView.image = image!
+    portraitImageView.contentMode = .scaleAspectFit
+    portraitImageView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(portraitImageView)
+    
+    let leadingImageViewConstraint = NSLayoutConstraint(item: portraitImageView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
+    
+    let trailingImageViewConstraint  = NSLayoutConstraint(item: portraitImageView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
+    
+    let topImageViewConstraint  = NSLayoutConstraint(item: portraitImageView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
+    
+    let bottomImageViewConstraint  = NSLayoutConstraint(item: portraitImageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+    
+    let widthImageViewConstraint = NSLayoutConstraint(item: portraitImageView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 00)
+    //
+    // Add constraints
+    view.addConstraints([leadingImageViewConstraint ,
+                         topImageViewConstraint ,
+                         trailingImageViewConstraint ,
+                         bottomImageViewConstraint ,
+                         widthImageViewConstraint])
+    
+    
+    descriptionLabel.text = descriptionLabelText!
+    descriptionLabel.numberOfLines = 0
+    descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    self.view.addSubview(descriptionLabel)
+    
+    let leadingDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
+    
+    let trailingDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
+    
+    let topDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .top, relatedBy: .equal, toItem: portraitImageView, attribute: .bottom, multiplier: 1.0, constant: 0)
+    
+    let bottomDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+    
+    let widthDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1.0, constant: 0)
+    
+    // Add constraints
+    view.addConstraints([leadingDescriptionLabelConstraint,
+                         topDescriptionLabelConstraint,
+                         //  trailingDescriptionLabelConstraint,
+        bottomDescriptionLabelConstraint, widthDescriptionLabelConstraint])
+    
+    isPortraitLoaded = true
+}
+func unloadPortraitScreen(){
+    // Remove portrait screen
+    portraitImageView.removeFromSuperview()
+    descriptionLabel.removeFromSuperview()
+    isPortraitLoaded = false
+}
+*/
 /*from network
 
  charset=ISO-8859-1

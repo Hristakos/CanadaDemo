@@ -72,9 +72,10 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         // Get reference to the DetailViewController
         let detailVC = segue.destination as! DetailViewController
         
-        // set the articeUrl property of DetailViewController
+        // set the  property of DetailViewController
         
-        detailVC.screenTitle = item.title!
+        detailVC.navigationItem.title = item.title!
+        
         detailVC.image = selectedItemImage
         detailVC.descriptionLabelText = selectedItemDescripton!
     }

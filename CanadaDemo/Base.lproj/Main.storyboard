@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mj2-3u-qJs">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CanadaDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rCh-rN-WSZ">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="44" y="32" width="724" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GwJ-Fs-v0v">
                                     <size key="itemSize" width="100" height="100"/>
@@ -103,15 +103,79 @@
             <objects>
                 <viewController id="lFT-0d-jZy" customClass="DetailViewController" customModule="CanadaDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k18-9v-AGa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCQ-69-VcS">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.333333333333332"/>
+                                <color key="backgroundColor" red="1" green="0.2197350193" blue="0.21115176590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLr-lu-qGY">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.333333333333332"/>
+                                <color key="backgroundColor" red="0.21138526167022098" green="0.95201825282262409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="width" secondItem="k18-9v-AGa" secondAttribute="width" id="0uJ-7h-GVe"/>
+                            <constraint firstAttribute="trailing" secondItem="xLr-lu-qGY" secondAttribute="trailing" id="23Z-eo-OEn"/>
+                            <constraint firstAttribute="trailing" secondItem="qCQ-69-VcS" secondAttribute="trailing" id="2gb-eS-b0a"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="leading" secondItem="k18-9v-AGa" secondAttribute="leading" id="5tp-2l-qCQ"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="width" secondItem="k18-9v-AGa" secondAttribute="width" id="Csw-TM-eB6"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="top" secondItem="k18-9v-AGa" secondAttribute="top" id="KG1-CV-u9U"/>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="height" secondItem="k18-9v-AGa" secondAttribute="height" id="NNH-Sh-N7d"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="height" secondItem="k18-9v-AGa" secondAttribute="height" multiplier="0.5" id="Wnf-xV-Kae"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="width" secondItem="k18-9v-AGa" secondAttribute="width" multiplier="0.3" id="bqu-W2-RqJ"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="top" secondItem="xLr-lu-qGY" secondAttribute="bottom" id="dYK-Fa-fd8"/>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="height" secondItem="k18-9v-AGa" secondAttribute="height" multiplier="0.5" id="fVa-30-wW1"/>
+                            <constraint firstAttribute="bottom" secondItem="xLr-lu-qGY" secondAttribute="bottom" id="hwf-I7-ygq"/>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="leading" secondItem="k18-9v-AGa" secondAttribute="leading" multiplier="0.3" id="idh-2E-TcA"/>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="width" secondItem="k18-9v-AGa" secondAttribute="width" multiplier="0.7" id="lfn-pW-lsC"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="height" secondItem="k18-9v-AGa" secondAttribute="height" id="nzd-nd-JbD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FVV-ca-avP"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Csw-TM-eB6"/>
+                                <exclude reference="Wnf-xV-Kae"/>
+                                <exclude reference="bqu-W2-RqJ"/>
+                                <exclude reference="nzd-nd-JbD"/>
+                                <exclude reference="0uJ-7h-GVe"/>
+                                <exclude reference="NNH-Sh-N7d"/>
+                                <exclude reference="fVa-30-wW1"/>
+                                <exclude reference="idh-2E-TcA"/>
+                                <exclude reference="lfn-pW-lsC"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="bqu-W2-RqJ"/>
+                                <include reference="nzd-nd-JbD"/>
+                                <include reference="NNH-Sh-N7d"/>
+                                <include reference="idh-2E-TcA"/>
+                                <include reference="lfn-pW-lsC"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Csw-TM-eB6"/>
+                                <include reference="Wnf-xV-Kae"/>
+                                <include reference="0uJ-7h-GVe"/>
+                                <include reference="fVa-30-wW1"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="detailDescriptionLabele" destination="xLr-lu-qGY" id="Kgi-hh-ZLk"/>
+                        <outlet property="detailImageView" destination="qCQ-69-VcS" id="Tey-WJ-S4w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TyK-Gh-idg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1687.2" y="32.833583208395808"/>
+            <point key="canvasLocation" x="1685.625" y="32.74647887323944"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ftp-Bg-bA2">
@@ -119,7 +183,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mj2-3u-qJs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="G7Y-VG-La0">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
