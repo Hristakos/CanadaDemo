@@ -9,6 +9,6 @@
 import Foundation
 
 struct CanadaData:Decodable{
-    var title:String?
+    var title:String!
     var rows:[Row]?
 }

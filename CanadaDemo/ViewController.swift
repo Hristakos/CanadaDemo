@@ -35,7 +35,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        setFlowLayoutForColletionView()
+       // setFlowLayoutForColletionView()
     }
     
     override func viewDidLoad() {
@@ -105,6 +105,13 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                 flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.size.width  * 0.5, height:collectionView.frame.size.height)
                 collectionView.setCollectionViewLayout(flowLayout, animated: true)
             }
+                else if traitCollection.userInterfaceIdiom == .pad{
+                    flowLayout.minimumInteritemSpacing = 10 // (using 10 for now)
+                    flowLayout.minimumLineSpacing = 10 // (using 10 for now)
+                
+                    flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.size.width  * 0.5, height:collectionView.frame.size.height)
+                    collectionView.setCollectionViewLayout(flowLayout, animated: true)
+            }
         }
             // Check if portrail orientation
         else if (UIDevice.current.orientation == .portrait ){
@@ -117,6 +124,14 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                     40 , height:collectionView.frame.size.height * 0.35)
                 collectionView.setCollectionViewLayout(flowLayout, animated: true)
             }
+            else if traitCollection.userInterfaceIdiom == .pad{
+                flowLayout.minimumInteritemSpacing = 10 // (using 10 for now)
+                flowLayout.minimumLineSpacing = 10 // (uisng 10 for now)
+                flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.size.width -
+                    40 , height:collectionView.frame.size.height * 0.35)
+                collectionView.setCollectionViewLayout(flowLayout, animated: true)
+            }
+            
         }
         
         
