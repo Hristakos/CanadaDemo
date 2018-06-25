@@ -28,13 +28,14 @@ class DetailViewController: UIViewController {
     var bottomImageViewConstraint = NSLayoutConstraint()
     var widthImageViewConstraint = NSLayoutConstraint()
     var heightImageViewConstraint = NSLayoutConstraint()
+    var trailingImageViewConstraint  = NSLayoutConstraint()
     
     var leadingDetailLabelConstraint = NSLayoutConstraint()
     var topDetailLabelConstraint = NSLayoutConstraint()
     var bottomDetailLabelConstraint = NSLayoutConstraint()
     var widthDetailLabelConstraint = NSLayoutConstraint()
     var heightDetailLabelConstraint = NSLayoutConstraint()
-    
+    var trailingDetailLabelConstraint  = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,9 @@ class DetailViewController: UIViewController {
         
         detailImageView.image = image!
         detailImageView.clipsToBounds = true
+        
+        detailImageView.translatesAutoresizingMaskIntoConstraints = false
+        detailDescriptionLabele.translatesAutoresizingMaskIntoConstraints = false
         
         detailDescriptionLabele.text = descriptionLabelText!
         
@@ -63,6 +67,10 @@ class DetailViewController: UIViewController {
 //            loadPortraitScreen()
             
             detailImageView.contentMode = .scaleAspectFill
+            // layout screen for ipad in portrait mode
+            if traitCollection.userInterfaceIdiom == .pad{
+                ipadLoadPortrait()
+            }
        }
   
 
@@ -247,20 +255,87 @@ class DetailViewController: UIViewController {
     @objc func orientationChanged(notification:NSNotification){
     
         // Check the new orientation and change the imageView to change the way the image is displayed in order to create banner image in portait mode
+        // If Ipda need to load the screen constraints
         
         if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight{
             detailImageView.contentMode = .scaleAspectFit
+            // layout screen for ipad in landscape mode
+            if traitCollection.userInterfaceIdiom == .pad{
+                view.removeConstraints([leadingImageViewConstraint, topImageViewConstraint,
+                                        bottomImageViewConstraint,widthImageViewConstraint,heightImageViewConstraint,
+                                        trailingImageViewConstraint,leadingDetailLabelConstraint,
+                                        topDetailLabelConstraint,bottomDetailLabelConstraint,
+                                        widthDetailLabelConstraint,heightDetailLabelConstraint,
+                                        trailingDetailLabelConstraint])
+                ipadLandscapeLayout()
+            }
         }
         else if UIDevice.current.orientation == .portrait{
             detailImageView.contentMode = .scaleAspectFill
+            
+            // layout screen for ipad in landscape mode
+            if traitCollection.userInterfaceIdiom == .pad{
+                view.removeConstraints([leadingImageViewConstraint, topImageViewConstraint,
+                                        bottomImageViewConstraint,widthImageViewConstraint,heightImageViewConstraint,
+                                        trailingImageViewConstraint,leadingDetailLabelConstraint,
+                                        topDetailLabelConstraint,bottomDetailLabelConstraint,
+                                        widthDetailLabelConstraint,heightDetailLabelConstraint,
+                                        trailingDetailLabelConstraint])
+                ipadLoadPortrait()
+            }
         }
 
     }
     
+    // MARK: - Setting contraints for Ipad dependong on orientaion
+    
+    func ipadLoadPortrait(){
+        
+        leadingImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+//        if #available(iOS 11.0, *) {
+//            topImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide.topAnchor, attribute: .top, multiplier: 1.0, constant: 0)
+//        } else {
+            // Fallback on earlier versions
+        topImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20)
+        //}
+        
+        trailingImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
+        
+        widthImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
+        
+        heightImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 0.25, constant: 0)
+        
+        view.addConstraints([leadingImageViewConstraint,
+                             topImageViewConstraint,
+                             trailingImageViewConstraint,
+                             widthImageViewConstraint,
+                             heightImageViewConstraint])
+        
+        // Add contraints for label
+
+        
+        leadingDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
+        
+        topDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .top, relatedBy: .equal, toItem: detailImageView, attribute: .bottom, multiplier: 1.0, constant: 0)
+        
+//        bottomDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+            trailingImageViewConstraint = NSLayoutConstraint(item: detailDescriptionLabele, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        
+        widthDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
+        
+        heightDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 0.25, constant: 0)
+        
+        view.addConstraints([leadingDetailLabelConstraint,
+                             topDetailLabelConstraint,
+                             trailingDetailLabelConstraint,
+                             widthDetailLabelConstraint,
+                             heightDetailLabelConstraint])
+    }
     func ipadLandscapeLayout(){
         
         // Image view constraints
-        detailImageView.translatesAutoresizingMaskIntoConstraints = false
+
         
         leadingImageViewConstraint = NSLayoutConstraint(item: detailImageView , attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
         
@@ -279,11 +354,11 @@ class DetailViewController: UIViewController {
                              heightImageViewConstraint])
         
         // Add contraints for label
-        detailDescriptionLabele.translatesAutoresizingMaskIntoConstraints = false
+
         
         leadingDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .leading, relatedBy: .equal, toItem: detailImageView, attribute: .trailing, multiplier: 1.0, constant: 0)
         
-        topDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
+        topDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .top, relatedBy: .equal, toItem: view , attribute: .top, multiplier: 1.0, constant: 0)
         
         bottomDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
         

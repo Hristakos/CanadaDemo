@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mj2-3u-qJs">
-    <device id="retina5_9" orientation="landscape">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CanadaDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rCh-rN-WSZ">
-                                <rect key="frame" x="44" y="32" width="724" height="322"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GwJ-Fs-v0v">
                                     <size key="itemSize" width="100" height="100"/>
@@ -102,15 +102,15 @@
             <objects>
                 <viewController id="lFT-0d-jZy" customClass="DetailViewController" customModule="CanadaDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k18-9v-AGa">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCQ-69-VcS">
-                                <rect key="frame" x="43.999999999999986" y="0.0" width="243.66666666666663" height="375"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="203"/>
                                 <color key="backgroundColor" red="1" green="0.2197350193" blue="0.21115176590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLr-lu-qGY">
-                                <rect key="frame" x="287.66666666666669" y="0.0" width="568.33333333333326" height="375"/>
+                                <rect key="frame" x="0.0" y="291" width="375" height="203"/>
                                 <color key="backgroundColor" red="0.21138526167022098" green="0.95201825282262409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -138,9 +138,9 @@
                             <constraint firstItem="qCQ-69-VcS" firstAttribute="top" secondItem="FVV-ca-avP" secondAttribute="top" id="mE1-Tl-Mjk"/>
                             <constraint firstItem="qCQ-69-VcS" firstAttribute="top" secondItem="k18-9v-AGa" secondAttribute="top" id="mRb-gB-FX3"/>
                             <constraint firstItem="xLr-lu-qGY" firstAttribute="top" secondItem="k18-9v-AGa" secondAttribute="top" id="q9c-0v-RcP"/>
-                            <constraint firstAttribute="trailing" secondItem="qCQ-69-VcS" secondAttribute="trailing" id="qsV-jf-O4e"/>
+                            <constraint firstItem="qCQ-69-VcS" firstAttribute="trailing" secondItem="k18-9v-AGa" secondAttribute="trailing" id="qsV-jf-O4e"/>
                             <constraint firstItem="qCQ-69-VcS" firstAttribute="height" secondItem="k18-9v-AGa" secondAttribute="height" multiplier="0.5" id="rEr-Kc-n9W"/>
-                            <constraint firstAttribute="trailing" secondItem="xLr-lu-qGY" secondAttribute="trailing" id="rpf-Xg-t5s"/>
+                            <constraint firstItem="xLr-lu-qGY" firstAttribute="trailing" secondItem="k18-9v-AGa" secondAttribute="trailing" id="rpf-Xg-t5s"/>
                             <constraint firstItem="qCQ-69-VcS" firstAttribute="leading" secondItem="k18-9v-AGa" secondAttribute="leading" id="weU-Hs-f2M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FVV-ca-avP"/>
@@ -232,7 +232,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mj2-3u-qJs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="G7Y-VG-La0">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="32"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
