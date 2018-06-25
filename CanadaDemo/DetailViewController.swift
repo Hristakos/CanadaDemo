@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    
+
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailDescriptionLabele: UILabel!
     
@@ -26,20 +26,28 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged(notification:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
         detailImageView.image = image!
         detailImageView.clipsToBounds = true
-        detailImageView.contentMode = .scaleAspectFit
+        
         detailDescriptionLabele.text = descriptionLabelText!
         
         // Do any additional setup after loading the view.
-        // Check orientation
-//        if (UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight){
-//            loadLandscapeScreen()
+        // Check orientation to determine how the image is displayed
+        if (UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight){
+
+            detailImageView.contentMode = .scaleAspectFit
+            //            loadLandscapeScreen()
 //
-//        }
-//        else if UIDevice.current.orientation == .portrait {
+        }
+        else if UIDevice.current.orientation == .portrait {
 //            loadPortraitScreen()
-//        }
+            
+            detailImageView.contentMode = .scaleAspectFill
+       }
   
 
         
@@ -219,4 +227,17 @@ class DetailViewController: UIViewController {
         isPortraitLoaded = false
     }
 
+    
+    @objc func orientationChanged(notification:NSNotification){
+    
+        // Check the new orientation and change the imageView to change the way the image is displayed in order to create banner image in portait mode
+        
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight{
+            detailImageView.contentMode = .scaleAspectFit
+        }
+        else if UIDevice.current.orientation == .portrait{
+            detailImageView.contentMode = .scaleAspectFill
+        }
+
+    }
 }

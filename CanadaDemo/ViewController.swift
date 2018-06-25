@@ -113,7 +113,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             if traitCollection.userInterfaceIdiom == .phone{
                 flowLayout.minimumInteritemSpacing = 10 // (using 10 for now)
                 flowLayout.minimumLineSpacing = 10 // (uisng 10 for now)
-                flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.size.width , height:collectionView.frame.size.height * 0.35)
+                flowLayout.estimatedItemSize = CGSize(width: collectionView.frame.size.width -
+                    10, height:collectionView.frame.size.height * 0.35)
                 collectionView.setCollectionViewLayout(flowLayout, animated: true)
             }
         }
