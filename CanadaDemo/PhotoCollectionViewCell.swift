@@ -44,9 +44,16 @@ func displayRow(_ row:Row){
     // Check if the row has an image
     guard urlString != nil else{
         print("Coiuldn't create url string")
+        print("title: \(titleLabel.text!)")
+        imageView.image = UIImage(named: "error-1.jpg")!
         return
     }
-    
+    // Check if image already downloaded in cache
+    let cachedImage = CacheManager.retrieveImageData(urlString!)
+    if cachedImage != nil {
+        imageView.image = UIImage(data: cachedImage!)
+        return
+    }
     let url = URL(string: urlString!)
     
     // Check that it isn't nil
@@ -65,22 +72,35 @@ func displayRow(_ row:Row){
         
         //Check there is no error and we have data
         if error == nil && data != nil {
-        //    let rsp = response! as! HTTPURLResponse
+            let rsp = response! as! HTTPURLResponse
+            
 //            if rsp.statusCode != 200 {
 //                DispatchQueue.main.async {
-//                    self.imageView.image = UIImage(named: "Error.png")
+//                    self.imageView.image = UIImage(named: "error-1.jpg")
 //                    //print(self.imageView.image!.size)
 //                    return
 //                }
 //            }
- //           print("response \(response!)")
+            print("response \(response!)")
   
             //Befor setting set the image, ensure that the image data is still relevant to the title
             if self.rowToDisplay!.imageHref == urlString!{
                 //self.reloadInputViews()
                 //Set the image view with data
                 DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data!)
+                    
+                    let image = UIImage(data: data!)
+ 
+                    
+                    print("image size = \(image?.size)")
+                    if image != nil{
+                        self.imageView.image = UIImage(data: data!)
+                        // Save image to cache
+                        CacheManager.saveImageData(urlString!, data!)
+                    }
+                    else{
+                        self.imageView.image = UIImage(named: "error-1.jpg")
+                    }
                     //print(self.imageView.image!.size)
                 }
             }
