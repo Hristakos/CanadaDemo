@@ -31,6 +31,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         
         setFlowLayoutForColletionView()
         
+        addRefreshButtonToNavigationBar()
+       
+        
     }
     
 
@@ -47,7 +50,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         //Retrieve json feed data from the model
         //model.getRemoteJsonData()
         model.getLocalJsonFile()
-        
+        //model.GetJson()
         // Set delegate properties
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -144,7 +147,7 @@ extension ViewController : DataModelProtocol{
     func dataRetrieved(data: CanadaData) {
         // Set the data property once the mode returns parsed data from json file
         self.data.rows = data.rows!
-
+         navigationItem.title = data.title!
         // reload collerction view
         collectionView.reloadData()
         
@@ -163,6 +166,7 @@ extension ViewController : UICollectionViewDataSource {
         //check if we have data first (downlaod takes time may be nil when we are here)
         if data.rows != nil {
             return data.rows!.count
+            
         }else{
             return 0
         }
@@ -200,6 +204,18 @@ extension ViewController : UICollectionViewDataSource {
         }
         // Transition to Detail View Controller
         performSegue(withIdentifier: "segueToDetail", sender: self)
+        
+    }
+    // MARK: - Refresh button 
+    func addRefreshButtonToNavigationBar(){
+        let refreshButton = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshTapped))
+        
+        navigationItem.rightBarButtonItem = refreshButton
+        
+    }
+    @objc func refreshTapped(){
+        // Here we want to download json data again but because I am working locally cant't get fresh data as the file is already loaded in project. but I think it works
+        model.getLocalJsonFile()
         
     }
 }

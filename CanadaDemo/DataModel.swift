@@ -45,8 +45,12 @@ class DataModel {
             // get the data from that URL
             let data = try Data(contentsOf: url)
             
-            // data is 3108 bytes
-            print(data.debugDescription)
+            
+//            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
+//            // data is 3108 bytes
+//
+//            let rows = json!["rows"] as? [NSDictionary]
+//            print("number of rows = ", rows!.count)
             //Decode the JSON data
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(CanadaData.self, from: data)
@@ -90,13 +94,19 @@ class DataModel {
                 
                 // Create decoder object
                 let decoder = JSONDecoder()
+                //JSONSerialization.ReadingOptions =
                 
                 //TODO:- Not able to decode data from network maybe security settings
                 // When download file data is 3107 bytes from local its 3108 ???
                 do {
+                    // Data returned is not valid
+                    
+                    print("is vallid JSON data = \(JSONSerialization.isValidJSONObject(data!))")
                     
                     let decodedData = try decoder.decode(CanadaData.self, from: data!)
-
+//                   let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+//
+//                    let title = json!["title"] as? String
                     // Handle cases of null values from JSON file
                     var cleanData = CanadaData()
                     cleanData = self.cleanJsonData(rawData: decodedData)
@@ -124,7 +134,7 @@ class DataModel {
         
         //Loop though each element of the data and replace any Null values check if entire element has null values remove from data
         for i in 0...(rawData.rows?.count)! - 1{
-  
+            cleanData.title = rawData.title
             var title = rawData.rows![i].title
             var description = rawData.rows![i].description
             var imageHref = rawData.rows![i].imageHref
@@ -149,5 +159,36 @@ class DataModel {
         
         }
         return cleanData
+    }
+    
+    func GetJson(){
+    //--------set URL --------//
+    let myUrl = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json");
+    var request = URLRequest(url:myUrl!)
+    request.httpMethod = "POST"
+    let postString = "";
+    request.httpBody = postString.data(using: String.Encoding.utf8);
+    let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+    if error != nil
+    {
+    print("error=\(error!)")
+    return
+    }
+    // You can print out response object
+    print("response = \(response!)")
+    
+    do {
+    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+    //print("json", (json?.allKeys.debugDescription))
+    if let parseJSON = json {
+    // Now we can access value of latiutde
+    //let latitude= parseJSON["latitude"] as? String //<---- Here , which i need latitude value
+        print("in parse JSON", parseJSON)
+    }
+    } catch {
+    print("error in catch ",error)
+    }
+    }
+    task.resume()
     }
 }
