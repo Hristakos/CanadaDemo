@@ -21,6 +21,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     // collection View outlet property to moodify collection porperties
     @IBOutlet weak var collectionView: UICollectionView!
+    
 
     
     // Create Model and data object to store data retieved
@@ -44,8 +45,10 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.red
-        collectionView.backgroundColor = UIColor.red
+       // view.backgroundColor = UIColor.red
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isOpaque = true
+
         // Assign viewcontroller as delegate and request json data
         model.delegate = self
         
@@ -58,8 +61,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 
         model.getLocalJsonFile()
         
-
-
         
         //model.GetJson()
         // Set delegate properties
@@ -164,6 +165,7 @@ extension ViewController : DataModelProtocol{
         // Set the data property once the mode returns parsed data from json file
         self.data.rows = data.rows!
         navigationItem.title = data.title!
+        
         // reload collerction view
         collectionView.reloadData()
         

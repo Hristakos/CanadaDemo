@@ -315,12 +315,12 @@ class DetailViewController: UIViewController {
         // Add contraints for label
 
         
-        leadingDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
+        leadingDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .leading, relatedBy: .equal, toItem: detailImageView, attribute: .leading, multiplier: 1.0, constant: 0)
         
         topDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .top, relatedBy: .equal, toItem: detailImageView, attribute: .bottom, multiplier: 1.0, constant: 0)
         
 //        bottomDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
-            trailingImageViewConstraint = NSLayoutConstraint(item: detailDescriptionLabele, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+            trailingDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         
         widthDetailLabelConstraint = NSLayoutConstraint(item: detailDescriptionLabele , attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
         
