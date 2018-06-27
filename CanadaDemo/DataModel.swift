@@ -154,7 +154,7 @@ class DataModel {
                 if imageHref == nil {
                     imageHref = ""
                 }
-
+                print("row tile in clean data = \(title)")
                 // Add element to clean data for return
                 cleanData.rows?.append(Row(title: title, description: description, imageHref: imageHref))
                 

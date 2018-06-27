@@ -79,14 +79,38 @@ func displayRow(_ row:Row){
     }
     
     //Get the session
-    let session = URLSession.shared
     
+
+    // Here we can set the request time out period setting to 1 sec for now don't know what is reasonable might up it a bit not sure
+    let sessionConfig = URLSessionConfiguration.default
+    sessionConfig.timeoutIntervalForRequest = 1.0
+    sessionConfig.timeoutIntervalForResource = 60.0
+    
+    let session = URLSession(configuration: sessionConfig)
+    
+    print("default session.configuration.timeoutIntervalForRequest = ", session.configuration.timeoutIntervalForRequest )
+
+
     // Create the DataTask
     let dataTask = session.dataTask(with: url!) { (data, response, error) in
         
         
+        if let err = error{
+            print("row title \(row.title!)")
+            print("error = \(err)")
+        }
+        guard let data = data, error == nil  else {
+        DispatchQueue.main.async {
+            self.imageView.image = UIImage(named: "no_image_available.jpg")
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                self.imageView.alpha = 1
+            }, completion: nil)
+
+            }
+            return
+        }
         //Check there is no error and we have data
-        if error == nil && data != nil {
+        //if error == nil && data == nil {
         //    let rsp = response! as! HTTPURLResponse
             
 //            if rsp.statusCode != 200 {
@@ -96,6 +120,7 @@ func displayRow(_ row:Row){
 //                    return
 //                }
 //            }
+            print("row title time out \(row.title!)")
             print("response \(response!)")
   
             //Befor setting set the image, ensure that the image data is still relevant to the title
@@ -104,18 +129,18 @@ func displayRow(_ row:Row){
                 //Set the image view with data
                 DispatchQueue.main.async {
                     
-                    let image = UIImage(data: data!)
+                    let image = UIImage(data: data)
  
                     
                    // print("image size = \(image?.size)")
                     if image != nil{
-                        self.imageView.image = UIImage(data: data!)
+                        self.imageView.image = UIImage(data: data)
                         // Save image to cache
                         
                         UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
                             self.imageView.alpha = 1
                         }, completion: nil)
-                        CacheManager.saveImageData(urlString!, data!)
+                        CacheManager.saveImageData(urlString!, data)
                     }
                     else{
                         self.imageView.image = UIImage(named: "no_image_available.jpg")
@@ -127,7 +152,7 @@ func displayRow(_ row:Row){
                 }
             }
             
-        }
+        //}
         
     }
 
