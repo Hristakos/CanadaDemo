@@ -205,7 +205,7 @@ class DetailViewController: UIViewController {
 
         let bottomImageViewConstraint  = NSLayoutConstraint(item: portraitImageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
 
-        let widthImageViewConstraint = NSLayoutConstraint(item: portraitImageView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 00)
+    //    let widthImageViewConstraint = NSLayoutConstraint(item: portraitImageView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 00)
         //
         // Add constraints
         view.addConstraints([leadingImageViewConstraint ,
@@ -231,7 +231,7 @@ class DetailViewController: UIViewController {
         
         let bottomDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
         
-        let widthDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1.0, constant: 0)
+        //let widthDescriptionLabelConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1.0, constant: 0)
         
 
         // Add constraints

@@ -29,9 +29,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     // Set flowLayout here for now
     override func viewDidAppear(_ animated: Bool) {
         
-        setFlowLayoutForColletionView()
-        
-        addRefreshButtonToNavigationBar()
+
        
         
     }
@@ -54,7 +52,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         // Set delegate properties
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        setFlowLayoutForColletionView()
+        addRefreshButtonToNavigationBar()
 
     }
 

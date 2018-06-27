@@ -30,6 +30,9 @@ func displayRow(_ row:Row){
     //Clear the image in case cell is being reuesed
     imageView.image = nil
     
+    // Animate the loading of the image
+    
+    imageView.alpha = 0
     // Set property to keep track of row that needs to be displayed
     rowToDisplay = row
     
@@ -45,13 +48,21 @@ func displayRow(_ row:Row){
     guard urlString != nil else{
         print("Coiuldn't create url string")
         print("title: \(titleLabel.text!)")
-        imageView.image = UIImage(named: "error-1.jpg")!
+        imageView.image = UIImage(named: "noimage.jpg")!
+        imageView.alpha = 1
+//        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+//            self.imageView.alpha = 1
+//        }, completion: nil)
+      
         return
     }
     // Check if image already downloaded in cache
     let cachedImage = CacheManager.retrieveImageData(urlString!)
     if cachedImage != nil {
         imageView.image = UIImage(data: cachedImage!)
+        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+            self.imageView.alpha = 1
+        }, completion: nil)
         return
     }
     let url = URL(string: urlString!)
@@ -59,7 +70,11 @@ func displayRow(_ row:Row){
     // Check that it isn't nil
     guard url != nil else{
         print("Coiuldn't create url object")
-        imageView.image = UIImage(named: "error-1.jpg")
+        imageView.alpha = 1
+        imageView.image = UIImage(named: "noimage.jpg")
+        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+            self.imageView.alpha = 1
+        }, completion: nil)
         return
     }
     
@@ -72,7 +87,7 @@ func displayRow(_ row:Row){
         
         //Check there is no error and we have data
         if error == nil && data != nil {
-            let rsp = response! as! HTTPURLResponse
+        //    let rsp = response! as! HTTPURLResponse
             
 //            if rsp.statusCode != 200 {
 //                DispatchQueue.main.async {
@@ -92,14 +107,21 @@ func displayRow(_ row:Row){
                     let image = UIImage(data: data!)
  
                     
-                    print("image size = \(image?.size)")
+                   // print("image size = \(image?.size)")
                     if image != nil{
                         self.imageView.image = UIImage(data: data!)
                         // Save image to cache
+                        
+                        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                            self.imageView.alpha = 1
+                        }, completion: nil)
                         CacheManager.saveImageData(urlString!, data!)
                     }
                     else{
                         self.imageView.image = UIImage(named: "error-1.jpg")
+                        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                            self.imageView.alpha = 1
+                        }, completion: nil)
                     }
                     //print(self.imageView.image!.size)
                 }
@@ -108,7 +130,7 @@ func displayRow(_ row:Row){
         }
         
     }
-    
+
     // Fire the datatask
     dataTask.resume()
 

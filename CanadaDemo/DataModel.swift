@@ -149,7 +149,7 @@ class DataModel {
                     description = "No Description"
                 }
                 if imageHref == nil {
-                    imageHref = "No Image"
+                    imageHref = ""
                 }
 
                 // Add element to clean data for return
