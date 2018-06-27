@@ -44,8 +44,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.red
-        collectionView.backgroundColor = UIColor.brown
+       
+        
         // Assign viewcontroller as delegate and request json data
         model.delegate = self
         
@@ -201,6 +201,8 @@ extension ViewController : UICollectionViewDataSource {
         
         return cell
     }
+    
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //set selected image to pass to detailVC
