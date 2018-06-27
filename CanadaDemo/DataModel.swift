@@ -7,7 +7,8 @@
 //
 
 import Foundation
-/* 
+
+/*
  
  */
 
@@ -18,6 +19,7 @@ protocol DataModelProtocol{
 
 class DataModel {
     
+
     // delegate property for view to assign itself to
     var delegate:DataModelProtocol?
     
@@ -25,9 +27,10 @@ class DataModel {
      */
     
     // retrieved JSON data from local file (stored in project) and parse data using JSONDecoder and CanaData Struct returns data via protocol to the delegate via dataRetrieved(data:CanadaData)
-    
+
     func getLocalJsonFile(){
         
+
         // get a path to the json file in our app bundle
         let path = Bundle.main.path(forResource: "canada", ofType: ".json")
         

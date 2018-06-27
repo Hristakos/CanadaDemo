@@ -77,6 +77,9 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0F6-yW-Nyg">
+                                <rect key="frame" x="177" y="396" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -84,11 +87,14 @@
                             <constraint firstItem="rCh-rN-WSZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hbi-Dv-OKf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rCh-rN-WSZ" secondAttribute="bottom" id="NkI-Jj-FZw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rCh-rN-WSZ" secondAttribute="trailing" id="a1a-3s-geI"/>
+                            <constraint firstItem="0F6-yW-Nyg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iNj-cg-2Pw"/>
+                            <constraint firstItem="0F6-yW-Nyg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wu9-xt-3Xr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="I1l-It-pqw"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="0F6-yW-Nyg" id="Tjh-Uu-Per"/>
                         <outlet property="collectionView" destination="rCh-rN-WSZ" id="Tyx-oA-KSW"/>
                         <segue destination="lFT-0d-jZy" kind="show" identifier="segueToDetail" id="dFq-xR-zFx"/>
                     </connections>

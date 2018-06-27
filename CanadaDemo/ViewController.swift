@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // UICollectionViewFlowLayout instance for collection view to dynamically resize cells
     var flowLayout = UICollectionViewFlowLayout()
@@ -26,34 +27,49 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     var model = DataModel()
     var data = CanadaData()
 
-    // Set flowLayout here for now
+  
     override func viewDidAppear(_ animated: Bool) {
-        
+ 
+    }
+    override func viewDidLayoutSubviews() {
 
-       
-        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
 
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-       // setFlowLayoutForColletionView()
+
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor.brown
         // Assign viewcontroller as delegate and request json data
         model.delegate = self
         
+        // Start activity indicator json data may take some time to download and return to view
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+
         //Retrieve json feed data from the model
         //model.getRemoteJsonData()
+
         model.getLocalJsonFile()
+        
+
+
+        
         //model.GetJson()
         // Set delegate properties
         collectionView.delegate = self
         collectionView.dataSource = self
         setFlowLayoutForColletionView()
         addRefreshButtonToNavigationBar()
+        
+
+        
 
     }
 
@@ -144,12 +160,15 @@ extension ViewController : DataModelProtocol{
     // MARK: - DataModelProtocol methods
     
     func dataRetrieved(data: CanadaData) {
+        
         // Set the data property once the mode returns parsed data from json file
         self.data.rows = data.rows!
-         navigationItem.title = data.title!
+        navigationItem.title = data.title!
         // reload collerction view
         collectionView.reloadData()
         
+        // Stop activity indicator data has been retieved
+        activityIndicator.stopAnimating()
         print("Number of rows in file \(self.data.rows!.count)")
   
     }
@@ -214,7 +233,12 @@ extension ViewController : UICollectionViewDataSource {
     }
     @objc func refreshTapped(){
         // Here we want to download json data again but because I am working locally cant't get fresh data as the file is already loaded in project. but I think it works
+        
+        // Show activity indicator
+        activityIndicator.startAnimating()
+        
         model.getLocalJsonFile()
+
         
     }
 }

@@ -70,7 +70,7 @@ func displayRow(_ row:Row){
     // Check that it isn't nil
     guard url != nil else{
         print("Coiuldn't create url object")
-        imageView.alpha = 1
+
         imageView.image = UIImage(named: "noimage.jpg")
         UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
             self.imageView.alpha = 1
