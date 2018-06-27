@@ -11,13 +11,13 @@
 		6B5BE57420DA731300E91C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE57320DA731300E91C11 /* AppDelegate.swift */; };
 		6B5BE57620DA731300E91C11 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE57520DA731300E91C11 /* ViewController.swift */; };
 		6B5BE57920DA731300E91C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE57720DA731300E91C11 /* Main.storyboard */; };
-		6B5BE57B20DA731C00E91C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE57A20DA731C00E91C11 /* Assets.xcassets */; };
 		6B5BE57E20DA731C00E91C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE57C20DA731C00E91C11 /* LaunchScreen.storyboard */; };
 		6B5BE58620DA73B600E91C11 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58520DA73B600E91C11 /* Row.swift */; };
 		6B5BE58A20DA766C00E91C11 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58920DA766C00E91C11 /* DataModel.swift */; };
 		6B5BE58E20DA7B1900E91C11 /* CanadaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */; };
 		6B5BE59020DA81B400E91C11 /* canada.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B5BE58F20DA81B300E91C11 /* canada.json */; };
 		6B5BE59220DB32BA00E91C11 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */; };
+		6B7EEE3E20E3D0660029995C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B7EEE3D20E3D0660029995C /* Assets.xcassets */; };
 		6BF3598320DE7CC5007DC57C /* jsondata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF3598220DE7CC5007DC57C /* jsondata.swift */; };
 		6BF3598520DF6992007DC57C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF3598420DF6992007DC57C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -28,7 +28,6 @@
 		6B5BE57320DA731300E91C11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B5BE57520DA731300E91C11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B5BE57820DA731300E91C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6B5BE57A20DA731C00E91C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B5BE57D20DA731C00E91C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B5BE57F20DA731D00E91C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B5BE58520DA73B600E91C11 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanadaData.swift; sourceTree = "<group>"; };
 		6B5BE58F20DA81B300E91C11 /* canada.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = canada.json; sourceTree = "<group>"; };
 		6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B7EEE3D20E3D0660029995C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BF3598220DE7CC5007DC57C /* jsondata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsondata.swift; sourceTree = "<group>"; };
 		6BF3598420DF6992007DC57C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +79,8 @@
 				6B5BE57720DA731300E91C11 /* Main.storyboard */,
 				6BF3598420DF6992007DC57C /* DetailViewController.swift */,
 				6B5BE59120DB32BA00E91C11 /* PhotoCollectionViewCell.swift */,
-				6B5BE57A20DA731C00E91C11 /* Assets.xcassets */,
 				6B5BE57C20DA731C00E91C11 /* LaunchScreen.storyboard */,
+				6B7EEE3D20E3D0660029995C /* Assets.xcassets */,
 				6B5BE58F20DA81B300E91C11 /* canada.json */,
 				6B5BE57F20DA731D00E91C11 /* Info.plist */,
 				6B4E347E20E1344200C7E993 /* CacheManager.swift */,
@@ -147,8 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B5BE57E20DA731C00E91C11 /* LaunchScreen.storyboard in Resources */,
-				6B5BE57B20DA731C00E91C11 /* Assets.xcassets in Resources */,
 				6B5BE57920DA731300E91C11 /* Main.storyboard in Resources */,
+				6B7EEE3E20E3D0660029995C /* Assets.xcassets in Resources */,
 				6B5BE59020DA81B400E91C11 /* canada.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

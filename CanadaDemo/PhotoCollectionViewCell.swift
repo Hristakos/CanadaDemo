@@ -48,7 +48,7 @@ func displayRow(_ row:Row){
     guard urlString != nil else{
         print("Coiuldn't create url string")
         print("title: \(titleLabel.text!)")
-        imageView.image = UIImage(named: "noimage.jpg")!
+        imageView.image = UIImage(named: "no_image_available.jpg")!
         imageView.alpha = 1
 //        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
 //            self.imageView.alpha = 1
@@ -71,7 +71,7 @@ func displayRow(_ row:Row){
     guard url != nil else{
         print("Coiuldn't create url object")
 
-        imageView.image = UIImage(named: "noimage.jpg")
+        imageView.image = UIImage(named: "no_image_available.jpg")
         UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
             self.imageView.alpha = 1
         }, completion: nil)
@@ -118,7 +118,7 @@ func displayRow(_ row:Row){
                         CacheManager.saveImageData(urlString!, data!)
                     }
                     else{
-                        self.imageView.image = UIImage(named: "error-1.jpg")
+                        self.imageView.image = UIImage(named: "no_image_available.jpg")
                         UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
                             self.imageView.alpha = 1
                         }, completion: nil)

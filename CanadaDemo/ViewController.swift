@@ -44,8 +44,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
+        view.backgroundColor = UIColor.red
+        collectionView.backgroundColor = UIColor.red
         // Assign viewcontroller as delegate and request json data
         model.delegate = self
         
