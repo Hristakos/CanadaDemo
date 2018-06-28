@@ -75,6 +75,7 @@
 				6B5BE57520DA731300E91C11 /* ViewController.swift */,
 				6B5BE58D20DA7B1900E91C11 /* CanadaData.swift */,
 				6B5BE58520DA73B600E91C11 /* Row.swift */,
+				6B4E347E20E1344200C7E993 /* CacheManager.swift */,
 				6B5BE58920DA766C00E91C11 /* DataModel.swift */,
 				6B5BE57720DA731300E91C11 /* Main.storyboard */,
 				6BF3598420DF6992007DC57C /* DetailViewController.swift */,
@@ -83,7 +84,6 @@
 				6B7EEE3D20E3D0660029995C /* Assets.xcassets */,
 				6B5BE58F20DA81B300E91C11 /* canada.json */,
 				6B5BE57F20DA731D00E91C11 /* Info.plist */,
-				6B4E347E20E1344200C7E993 /* CacheManager.swift */,
 			);
 			path = CanadaDemo;
 			sourceTree = "<group>";

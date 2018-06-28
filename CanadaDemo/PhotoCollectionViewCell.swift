@@ -11,16 +11,11 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
 
     // Cell Outlet properties
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
-
+    // Property to store row passed in from cell method call displayRow
     var rowToDisplay:Row?
-    var isUsed : Bool = false
-
-    var cellTitle = ""
- 
 
 /* This method adds text to titleLabel, Attemptm to create a url string, then url object, creates session object and attemps to download image via dataTask. Then it fires off the task. The image for cell is set to nil when it is loaded in order to make sure we don't get the wrong image with for title as cell may be reused, also check when it fires off dataTask to download the image that the request is still relevant as cell my have dequed again
      
@@ -30,34 +25,33 @@ func displayRow(_ row:Row){
     //Clear the image in case cell is being reuesed
     imageView.image = nil
     
-    // Animate the loading of the image
-    
+    // set here so change later to animate the loading of the image
     imageView.alpha = 0
+    
     // Set property to keep track of row that needs to be displayed
     rowToDisplay = row
     
     // Display the headline
     titleLabel.text = row.title!
-    
-    // Display the article image
+
     
     // Create url object
     let urlString = rowToDisplay?.imageHref
     
     // Check if the row has an image
     guard urlString != nil else{
-        print("Coiuldn't create url string")
-        print("title: \(titleLabel.text!)")
+        
+        // Assign the default no image avail image to image view and exit
+        
         imageView.image = UIImage(named: "no_image_available.jpg")!
         imageView.alpha = 1
-//        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
-//            self.imageView.alpha = 1
-//        }, completion: nil)
-      
         return
     }
-    // Check if image already downloaded in cache
+    
+    
+    // Before se the image check if the image has already downloaded in and is in cache
     let cachedImage = CacheManager.retrieveImageData(urlString!)
+  
     if cachedImage != nil {
         imageView.image = UIImage(data: cachedImage!)
         UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
@@ -67,7 +61,7 @@ func displayRow(_ row:Row){
     }
     let url = URL(string: urlString!)
     
-    // Check that it isn't nil
+    // Check that it isn't nil if it is nil set defaut image and return
     guard url != nil else{
         print("Coiuldn't create url object")
 
@@ -78,27 +72,22 @@ func displayRow(_ row:Row){
         return
     }
     
-    //Get the session
-    
 
-    // Here we can set the request time out period setting to 1 sec for now don't know what is reasonable might up it a bit not sure
+    // Here we can set the request time out period setting to 1 sec for now don't know what is reasonable might up it a bit not sure this allows the view to display no image available if the response takes too loang and gives the app the ability to display default no image available
+    
+    // Need to create URLSessionConfiguration object set yhe timeout interval to 1
     let sessionConfig = URLSessionConfiguration.default
     sessionConfig.timeoutIntervalForRequest = 1.0
     sessionConfig.timeoutIntervalForResource = 60.0
     
     let session = URLSession(configuration: sessionConfig)
-    
-    print("default session.configuration.timeoutIntervalForRequest = ", session.configuration.timeoutIntervalForRequest )
+
 
 
     // Create the DataTask
     let dataTask = session.dataTask(with: url!) { (data, response, error) in
         
-        
-        if let err = error{
-            print("row title \(row.title!)")
-            print("error = \(err)")
-        }
+        // Check if we have data returned and no error
         guard let data = data, error == nil  else {
         DispatchQueue.main.async {
             self.imageView.image = UIImage(named: "no_image_available.jpg")
@@ -109,51 +98,34 @@ func displayRow(_ row:Row){
             }
             return
         }
-        //Check there is no error and we have data
-        //if error == nil && data == nil {
-        //    let rsp = response! as! HTTPURLResponse
-            
-//            if rsp.statusCode != 200 {
-//                DispatchQueue.main.async {
-//                    self.imageView.image = UIImage(named: "error-1.jpg")
-//                    //print(self.imageView.image!.size)
-//                    return
-//                }
-//            }
-            print("row title time out \(row.title!)")
-            print("response \(response!)")
+
   
-            //Befor setting set the image, ensure that the image data is still relevant to the title
-            if self.rowToDisplay!.imageHref == urlString!{
-                //self.reloadInputViews()
-                //Set the image view with data
-                DispatchQueue.main.async {
+        //Befor setting set the image, ensure that the image data is still relevant to the cell
+        if self.rowToDisplay!.imageHref == urlString!{
+            
+            //Set the image view with data on main thread
+            DispatchQueue.main.async {
+            
+                let image = UIImage(data: data)
+                
+                // chceck if we have an image created if set the image and store in cache
+                if image != nil{
+                    self.imageView.image = UIImage(data: data)
                     
-                    let image = UIImage(data: data)
- 
-                    
-                   // print("image size = \(image?.size)")
-                    if image != nil{
-                        self.imageView.image = UIImage(data: data)
-                        // Save image to cache
-                        
-                        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                    // Save image to cache
+                    UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
                             self.imageView.alpha = 1
                         }, completion: nil)
                         CacheManager.saveImageData(urlString!, data)
+                }
+                else{
+                    self.imageView.image = UIImage(named: "no_image_available.jpg")
+                    UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+                        self.imageView.alpha = 1
+                    }, completion: nil)
                     }
-                    else{
-                        self.imageView.image = UIImage(named: "no_image_available.jpg")
-                        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
-                            self.imageView.alpha = 1
-                        }, completion: nil)
-                    }
-                    //print(self.imageView.image!.size)
                 }
             }
-            
-        //}
-        
     }
 
     // Fire the datatask
@@ -162,40 +134,23 @@ func displayRow(_ row:Row){
 }
 
 
-
-//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        //Exhibit A - We need to cache our calculation to prevent a crash.
-//        if !isHeightCalculated {
-//            setNeedsLayout()
-//            layoutIfNeeded()
-//            let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-//            var newFrame = layoutAttributes.frame
-//            newFrame.size.width = CGFloat(ceilf(Float(size.width)))
-//            layoutAttributes.frame = newFrame
-//            isHeightCalculated = true
-//        }
-//        return layoutAttributes
-//    }
+// This is used to create the cell size based on the layout attributes size if the width is not smaller than the contentview width size don not change.
     
-    
-    //
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         setNeedsLayout()
         layoutIfNeeded()
-        print("Title: \(titleLabel.text!)\nlayoutAttributes.frame.size: \(layoutAttributes.frame.size)")
+      
+        //  print("Title: \(titleLabel.text!)\nlayoutAttributes.frame.size: \(layoutAttributes.frame.size)")
         
         let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
         var newFrame = layoutAttributes.frame
         // note: don't change the width if size.width is not less than new frame width
         if ceil(size.width) < newFrame.size.width{
             newFrame.size.width = ceil(size.width)
-        }else{
-            print("newFrame.size is \(newFrame.size.width) which is lesss that size.width \(size.width)")
-            
         }
 
         newFrame.size.height = ceil(size.height)
-        print("new frame size is \(newFrame.size)")
+//        print("new frame size is \(newFrame.size)")
         layoutAttributes.frame = newFrame
 
         return layoutAttributes
