@@ -8,6 +8,170 @@
 
 import Foundation
 /*
+ 
+ func getRemoteJsonData(){
+ 
+ // Create url object from string
+ let stringUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+ 
+ let url = URL(string: stringUrl)
+ 
+ // check we have url object
+ guard url != nil else{
+ print("couldn't get a url object")
+ //TODO: show alert msg
+ return
+ }
+ 
+ // Create session object
+ let sessionConfig = URLSessionConfiguration.default
+ let configuration = URLSessionConfiguration.ephemeral
+ 
+ let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: OperationQueue.main)
+ sessionConfig.timeoutIntervalForRequest = 1.0
+ //sessionConfig.timeoutIntervalForResource = 60.0
+ // sessionConfg.
+ // sessionConfig.networkServiceType = .default
+ // sessionConfig.isDiscretionary
+ 
+ var request = URLRequest(url: url!)
+ request.httpMethod = "GET"
+ request.networkServiceType = .default
+ //     request.allHTTPHeaderFields   =
+ //        ["Content-Type": "application/json; charset=UTF-8; ISO-8859-1;utf-8; " ,"Accept-Encoding":"gzip"]
+ 
+ 
+ 
+ 
+ print("session config default = ", sessionConfig.description)
+ //let session = URLSession(configuration: sessionConfig)
+ session.dataTask(with: request) { (data, resp, error) in
+ let urlrsp = resp as? HTTPURLResponse
+ 
+ 
+ let newdata = data!.base64EncodedString().utf16
+ 
+ //
+ ////            print (urlrsp)
+ ////            String utf_decode(data!as?String)
+ ////            var b = [UInt8]()
+ ////            var x = 0
+ ////            while x <= data!.count - 1{
+ ////
+ ////                b.append((a.popFirst())!)
+ ////                x += 1
+ ////            }
+ //                let serverAns = data?.base64EncodedData().base64EncodedData(options: .endLineWithCarriageReturn)
+ //
+ //            var readBytes = 1
+ //            var c = 0
+ //            var i = 0
+ //
+ //            var newString = ""
+ //            while readBytes <= b.count{
+                 let truncatedServerAns = b[c..<readBytes]
+                 let tsaData = Data(bytes: truncatedServerAns)
+ 
+                 newString += String(data: tsaData, encoding: .utf8)!
+                 print("newString : *****\(newString)***** ", newString)
+                 c += 1
+                 readBytes += 1
+ //                i += 1
+ ////                print("tsaData at \(i) = \(tsaData)")
+ ////                switch i {
+ ////                case : 2642; do {
+ ////                        readBytes += 1
+ ////                        c += 1
+ ////                    }
+ ////                    default
+ ////                    print("do nothing")
+ ////                    }
+ //                }
+ //
+ ////                    print("newString=\(String( describing: newString))")
+ ////                    var y = 1
+ ////                    let newstartindex = y + c
+ ////                    let newendindex = readBytes + y
+ ////                    while y <= 64{
+ ////                        let truncatedServerAns = b[newstartindex..<newendindex]
+ ////                        let tsaData = Data(bytes: truncatedServerAns)
+ ////                        newString += String(data: tsaData, encoding: .utf8)!
+ ////
+ ////                        y += 1
+ ////                    }
+ ////                }
+ //            }
+ //            print("newString=\(String( describing: newString))")
+ //            (Data(bytes: b[newstartindex..<newendindex])
+ //            // Prints:
+ //            // serverIdStr=Optional("PPPPPPPP")
+ //            let readBytes = 8
+ //            let truncatedServerAns = serverAns[0..<readBytes]
+ //            let tsaData = Data(bytes: truncatedServerAns)
+ //            let serverIdStr = String(data: tsaData, encoding: .utf8)
+ //            print("serverIdStr=\(String( describing: serverIdStr))")
+ //
+ //            // Prints:
+ // serverIdStr=Optional("PPPPPPPP")
+ //            if let string = String(data: b, encoding: .utf8) {
+ //                print(string)
+ //            } else {
+ //                print("not a valid UTF-8 sequence")
+ //            }
+ // print("is vallid JSON data = \(JSONSerialization.isValidJSONObject(a!))")
+ 
+ print("try again")
+ //}.resume()
+ //        session.downloadTask(with: url!) { (url, rsp, err) in
+ //            print("test this one out")
+ //            //let stringUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+ //
+ //            self.getLocalJsonFile(url!)
+ //
+ //
+ //
+ //        }.resume()
+ // Create a DataTask Object
+ 
+ //        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+ //            if error == nil && data != nil{
+ //                print(response!.description)
+ //
+ //                // Create decoder object
+ let decoder = JSONDecoder()
+ 
+ //                //JSONSerialization.ReadingOptions =
+ //
+ //                //TODO:- Not able to decode data from network maybe security settings
+ //                // When download file data is 3107 bytes from local its 3108 ???
+ do {
+ // Data returned is not valid
+ json.data(using: "ISO-8859-1")!
+ print("is vallid JSON data = \(JSONSerialization.isValidJSONObject(data!))")
+ 
+ //             let decodedData = try decoder.decode(CanadaData.self, from: serverAns!)
+ //                   let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+ //
+ //                    let title = json!["title"] as? String
+ // Handle cases of null values from JSON file
+ var cleanData = CanadaData()
+ //           cleanData = self.cleanJsonData(rawData: decodedData)
+ 
+ // Notify the view controller with the results by passing the data to on main thread
+ DispatchQueue.main.async {
+ self.delegate?.dataRetrieved(data: cleanData)
+ }
+ }
+ catch{
+ print("couldn't parse json error = \(error.localizedDescription)")
+ print(data!.base64EncodedString())
+ }
+ //            }
+ //        }
+ //
+ //        // Fire off the task
+ }.resume()
+ 
 func loadPortraitScreen(){
     
     
@@ -72,6 +236,8 @@ func unloadPortraitScreen(){
     isPortraitLoaded = false
 }
 */
+
+
 /*from network
 
  charset=ISO-8859-1

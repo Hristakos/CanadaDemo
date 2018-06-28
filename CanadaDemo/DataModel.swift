@@ -93,20 +93,29 @@ class DataModel {
 
         let dataTask = session.dataTask(with: url!) { (data, response, error) in
             print(response!.description)
+            print(response!.textEncodingName == "iso-8859-1")
+            
+            
+            
             if error == nil && data != nil{
+            
+                let responseString = NSString(data: data!, encoding: String.EncodingConversionOptions.allowLossy.rawValue)
+                
+                print("Response: \(String(describing: responseString))")
                 
                 // Create decoder object
                 let decoder = JSONDecoder()
                 //JSONSerialization.ReadingOptions =
-                
+                let s = responseString! as String
+                let d = Data(s.utf8)
                 //TODO:- Not able to decode data from network maybe security settings
                 // When download file data is 3107 bytes from local its 3108 ???
                 do {
                     // Data returned is not valid
+                    //JSONSerialization.i
+                    print("is vallid JSON data = \(JSONSerialization.isValidJSONObject(d)) ")
                     
-                    print("is vallid JSON data = \(JSONSerialization.isValidJSONObject(data!))")
-                    
-                    let decodedData = try decoder.decode(CanadaData.self, from: data!)
+                    let decodedData = try decoder.decode(CanadaData.self, from: d)
 //                   let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
 //
 //                    let title = json!["title"] as? String

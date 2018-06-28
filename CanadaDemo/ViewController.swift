@@ -57,9 +57,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         activityIndicator.startAnimating()
 
         //Retrieve json feed data from the model
-        //model.getRemoteJsonData()
+        //model.getLocalJsonFile()
 
-        model.getLocalJsonFile()
+        model.getRemoteJsonData()
         
         
         //model.GetJson()
@@ -241,7 +241,7 @@ extension ViewController : UICollectionViewDataSource {
         // Show activity indicator
         activityIndicator.startAnimating()
         
-        model.getLocalJsonFile()
+        model.getRemoteJsonData()
 
         
     }
