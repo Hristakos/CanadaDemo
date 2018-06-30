@@ -84,7 +84,7 @@
                                 </cells>
                             </collectionView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0F6-yW-Nyg">
-                                <rect key="frame" x="177" y="396" width="20" height="20"/>
+                                <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.2197350193" blue="0.21115176590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -241,7 +241,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="detailDescriptionLabele" destination="xLr-lu-qGY" id="Kgi-hh-ZLk"/>
+                        <outlet property="detailDescriptionLabel" destination="xLr-lu-qGY" id="GlW-tO-diz"/>
                         <outlet property="detailImageView" destination="qCQ-69-VcS" id="Tey-WJ-S4w"/>
                     </connections>
                 </viewController>
